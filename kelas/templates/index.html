@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% extends "layout.html" %} {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}website-kelas{% endblock %}</title>
+
+    {% comment %} <link rel="stylesheet" href="{% static 'css/style.css?v=12345' %}"> {% endcomment %}
+
+    <!-- Linking SwiperJS CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  </head>
+  <body>
+    {% block content %}
+    <section class="jumbotron text-center hero-section text-white">
+      <video autoplay loop muted playsinline class="bg-video">
+        <source src="{% static 'asset/vid/video-hero-section.mp4' %}" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="overlay"></div>
+      <div class="kelas position-relative">
+        <h1 class="display-4 kelas-name">XI RPL 2</h1>
+        <div class="lh-1">
+          <p class="lead" style="margin-top: -10px">SMK PGRI 2 PONOROGO - Force 40.</p>
+          <p class="lead fw-medium" style="margin-top: -11px"><span class="kelas-motto fs-3">Life's a rollercoaster,</span> sometimes low, sometimes coding.</p>
+
+          <div class="sosmed lead d-flex text-center align-items-center justify-content-center">
+            <a href="tiktok.com" class="nav-link text-decoration-none fs-3 me-3 badge"><i class="bx bxl-tiktok"></i></a>
+            <a href="instagram.com" class="nav-link text-decoration-none fs-3"><i class="bx bxl-instagram"></i></a>
+          </div>
+          <div class="sosmed-border text-center justify-content-center align-items-center"></div>
+        </div>
+      </div>
+    </section>
+
+    {% comment %} about class start {% endcomment %}
+    <section class="about-class">
+      <div class="row text-center mt-3">
+        <div class="col">
+          <h2 class="h-page fw-bold">About class</h2>
+        </div>
+      </div>
+      <div class="row justify-content-around fs-5 text-center">
+        <div class="fotbar col-md-4"><img src="{% static "asset/img/Group 6.png" %}" alt=""></div>
+        <div class="kelas-text col-md-4 text-start">
+          <p>
+            Selamat datang di website resmi kelas RPL 2 SMK PGRI 2 Ponorogo! Kami adalah bagian dari angkatan 40 dengan 29 siswa yang bersemangat dan kreatif. Di bawah bimbingan wali kelas kami, Bu Prita Oktavia Surya .W, S.Psi, kami terus
+            berusaha untuk mengembangkan kemampuan dan keterampilan dalam bidang Rekayasa Perangkat Lunak (RPL).
+          </p>
+        </div>
+      </div>
+
+      <div class="row justify-content-around fs-5 text-center mt-3">
+        <div class="row">
+          <div class="col">
+            <h2 class="fs-5 mt-5 fw-semibold">What's Rekayasa Perangkat Lunak (RPL)</h2>
+          </div>
+        </div>
+
+        <div class="kelas-text text-rpl col-md-4 text-end">
+          Rekayasa Perangkat Lunak (RPL) adalah bidang yang mempelajari cara mengembangkan, memelihara, dan mengelola perangkat lunak. <br />
+          Di jurusan RPL, kami belajar tidak hanya coding, tetapi juga proses terstruktur untuk membangun perangkat lunak berkualitas tinggi. Mata pelajaran yang kami pelajari mencakup Bahasa Pemrograman, Desain Web, dan Pengetahuan tentang
+          Undang-Undang HAKI dan ITE.
+        </div>
+        <div class="fotbar col-md-4"><img src="{% static "asset/img/Group 11.png" %}" alt=""></div>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="margin-top: -4%">
+        <path
+          fill="#9b51e0"
+          fill-opacity="1"
+          d="M0,128L48,138.7C96,149,192,171,288,181.3C384,192,480,192,576,208C672,224,768,256,864,266.7C960,277,1056,267,1152,245.3C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        ></path>
+      </svg>
+    </section>
+
+    {% comment %} about student {% endcomment %}
+     <section class="about-students" id="about-students">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h2 class="h-page text-white text-center">About students</h2>
+          </div>
+        </div>
+
+        <div class="row">
+          {% for card in page_obj.object_list %}
+          <div class="card-box col-md-5 mt-4  justify-content-center align-items-center ms-5">
+            <div class="card-image">
+              <img src="{{ card.studentImg.url }}" alt="" class="card-img text-center mt-4" />
+            </div>
+            <h2 class="name text-white text-center mt-2 fs-4 fw-bold">{{ card.name }}</h2>
+            <p class="motto text-center text-wrap text-white lh-1">{{ card.motto }}</p>
+            <p class="socials text-center text-decoration-none">
+              <a href="#"><i class="bx bxl-facebook"></i></a>
+              <a href="#"><i class="bx bxl-instagram"></i></a>
+              <a href="#"><i class="bx bxl-tiktok"></i></a>
+            </p>
+
+            <div class="btn-detail text-center"><a href="detail/{{ card.id }} " class="btn btn-outline-light"><span class="fw-semibold">{{ card.name }}</span> Detail</a></div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="row">
+          <div class="col">
+             <div class="pagination d-flex justify-content-center mt-3">
+            <span>
+              {% if page_obj.has_previous %}
+                <a href="?page=1" class="text-decoration-none fw-fw-semibold text-white">First</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="text-decoration-none fw-bold text-white">Prev</a>
+              {% endif %}
+
+              <span class="current text-white" style="border-bottom: 1px solid #fff; margin: 0 15px"> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}. </span>
+
+              {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="text-decoration-none fw-semibold text-white">Next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="text-decoration-none text-white fw-bold">Last</a>
+              {% endif %}
+            </span>
+          </div>
+          </div>
+        </div>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#fff"
+          fill-opacity="1"
+          d="M0,64L48,69.3C96,75,192,85,288,128C384,171,480,245,576,256C672,267,768,213,864,176C960,139,1056,117,1152,96C1248,75,1344,53,1392,42.7L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        ></path>
+      </svg>
+    </section>
+
+    {% comment %} Galery section start {% endcomment %}
+    <section class="galery" id="galery">
+      <div class="row">
+        <div class="col">
+          <h2 class="text-center text-black fw-bold h-page" style="bottom: 3%">Galery</h2>
+        </div>
+      </div>
+
+      <div class="container-galery container">
+        <div class="slide">
+          <div class="item shadow-sm galery-1" style="background-image: url({% static "asset/galery/galery-2.jpeg" %});">
+            <div class="content">
+              <div class="name">Lomba Takbir</div>
+              <div class="des">Lomba takbir SMK PGRI 2 PONOROGO</div>
+            </div>
+          </div>
+
+          <div class="item shdadow-lg galery-2" style="background-image: url({% static "asset/galery/galery-kelas-1.jpeg" %});">
+            <div class="content">
+              <div class="name">Clasmeeting</div>
+              <div class="des">Lomba clasmeeting di SMK PGRI 2 PONOROGO</div>
+            </div>
+          </div>
+
+          <div class="item shdadow-lg galery-3" style="background-image: url({% static "asset/galery/galery-8.jpg" %});">
+            <div class="content">
+              <div class="name">Kegiatan pondok pesantren</div>
+              <div class="des">Kegiatan pondok pesantren yang dilakukan setiap 1 tahun sekali oleh siswa/siswi SMK PGRI 2 PONOROGO, Foto ini diambil ketika kegiatan pondok pesantren kelas X. di pondok pesantren Al-Ikhlas.</div>
+            </div>
+          </div>
+
+          <div class="item shdadow-lg galery-4" style="background-image: url({% static "asset/galery/galery-3.jpeg" %});">
+            <div class="content">
+              <div class="name">Pembelajaran praktek</div>
+              <div class="des">Kegiatan ajar-mengajar di LAB.</div>
+            </div>
+          </div>
+
+          <div class="item shdadow-lg galery-5" style="background-image: url({% static "asset/galery/galery-4.jpeg" %});">
+            <div class="content">
+              <div class="name">Kegiatan ajar-mengajar di kelas.</div>
+              <div class="des">Kegiatan belajar materi di kelas.</div>
+            </div>
+          </div>
+
+          <div class="item shdadow-lg galery-6" style="background-image: url({% static "asset/galery/galery-5.jpeg" %});">
+            <div class="content">
+              <div class="name">Kegiatan bintalsik.</div>
+              <div class="des">Kegiatan bintalsik yang dilakukan 1 tahun sekali, foto ini diambil ketika bintalsik kelas X.</div>
+            </div>
+          </div>
+
+          <div class="item shdadow-lg galery-7" style="background-image: url({% static "asset/galery/galery-9.jpg" %});">
+            <div class="content">
+              <div class="name">Kegiatan bintalsik</div>
+              <div class="des">Kegiatan bintalsik yang dilaksanakan ketika kelas XI.</div>
+            </div>
+          </div>
+
+          <div class="item shdadow-lg galery-8" style="background-image: url({% static "asset/galery/galery-7.jpeg" %});">
+            <div class="content">
+              <div class="name">Acuk ilik Gank</div>
+              <div class="des">Acuk ilik adalah sebuah perkumpulan yang terbentuk karena, terpecahnya sebuah benua dan karena itu acuk ilik terbentuk untuk menyatukan Benua itu kembali.</div>
+            </div>
+          </div>
+        </div>
+        <div class="button" style="z-index: 1">
+          <button class="prev"><i class="bx bx-left-arrow-alt"></i></button>
+          <button class="next"><i class="bx bx-right-arrow-alt"></i></button>
+        </div>
+      </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="margin-top: 38%">
+      <path
+        fill="#9b51e0"
+        fill-opacity="1"
+        d="M0,96L48,117.3C96,139,192,181,288,197.3C384,213,480,203,576,213.3C672,224,768,256,864,266.7C960,277,1056,267,1152,229.3C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+      ></path>
+    </svg>
+    </section>
+
+    {% comment %} structurs section {% endcomment %}
+     <section class="structurs" id="structurs" style="background-image: url({% static "asset/structur-img/structur-kelas.png" %});">
+      <div class="test"></div>
+        <img  class="svg" src="{% static "asset/structur-img/wave.svg" %}" alt="">
+    </section>
+
+    {% comment %} footer {% endcomment %}
+    <section class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p class="text-center mt-5">© Created by <span style="font-family: 'Bebas Neue'">RIZKI FIANANDA</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    {% endblock %}
+
+    <!-- script -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- SwiperJS Script Link -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  </body>
+</html>

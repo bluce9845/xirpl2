@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>card</title>
+  </head>
+  <body>
+    <nav class="nav justify-content-center">
+      <a class="nav-link active" href="#" aria-current="page">Active link</a>
+      <a class="nav-link" href="#">Link</a>
+      <a class="nav-link disabled" href="#">Disabled link</a>
+    </nav>
+
+    {% comment %}
+    <div class="card-container">
+      {% for card in page_obj.object_list %}
+      <div class="card">
+        <h3>{{ card.name }}</h3>
+        <p>{{ card.motto }}</p>
+        <img src="{{ card.studentImg.url }}" alt="" />
+        <p>{{ card.studentImg }}</p>
+      </div>
+      {% empty %}
+      <p>No Cards available.</p>
+      {% endfor %}
+    </div>
+
+    <div class="pagination">
+      <span>
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current"> Page{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}. </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+      </span>
+    </div>
+    {% endcomment %} {% for g in galery %}
+    <ul>
+      <li>Nama Kegiatan : {{ g.namaKegiatan }}</li>
+      <li>Description Kegiatan : {{ g.desKegiatan }}</li>
+      <li>Foto Kegiatan : <img src="{{ g.imgKegiatan.url }}" alt="" /></li>
+    </ul>
+    {% endfor %}
+  </body>
+</html>

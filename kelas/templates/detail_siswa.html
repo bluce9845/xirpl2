@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>detail-siswa-Django</title>
+
+      <!-- icons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+
+     <!-- css -->
+     <link rel="stylesheet" href="{% static "css/detail.css" %}">
+
+         <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+
+
+  </head>
+  <body>
+{% comment %} nav {% endcomment %}
+ <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-lg">
+      <div class="container">
+        <a class="navbar-brand fs-3" href="#">XI RPL 2</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url "index" %}">Home</a>
+            </li>
+
+            <!-- about dropdown -->
+            <div class="btn-group">
+              <button type="button" class="btn dropdown-toggle nav-link" data-bs-toggle="dropdown" aria-expanded="false">About</button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item text-dark" href="{% url "index" %}">About class</a></li>
+                <li><a class="dropdown-item text-dark" href="{% url "index" %}">About students</a></li>
+              </ul>
+            </div>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url "index" %}">Galery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url "index" %}">Stucturs</a>
+            </li>
+            <li class="nav-item">
+              <button id="login" class="btn bg-white btn-sm rounded-5 pl-1 pr-3"><img style="width: 30px" src="{% static 'asset/img/avatar.png' %}" alt="" class="me-2" /><span class="fw-semibold">Login</span></button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+{% comment %} content {% endcomment %}
+    <section class="details-student" style="background-image: url({% static "asset/img/bg.png" %});">
+      <div class="container">
+        <div class="profile-about row d-flex justify-content-center align-items-center">
+          <div class="col-md-5 d-flex justify-content-center">
+            <div class="profile">
+              <img src="{{ detail_siswa.studentImg.url }}" class="card-img" alt="Profile Image" />
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <div class="about mt-5">
+              <h2 class="title fw-bold">About</h2>
+              <p class="content fw-light text-wrap">{{ detail_siswa.about }}</p>
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <div class="hobi mt-5">
+              <h2 class="title fw-bold">Hobi</h2>
+              <p class="content fw-light">{{ detail_siswa.hobi }}</p>
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <div class="motto mt-5">
+              <h2 class="title fw-bold">Motto</h2>
+              <p class="content fw-light text-start text-wrap">{{ detail_siswa.motto }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row profile-name d-flex flex-column align-items-center">
+          <div class="col">
+            <div class="name">
+              <h2 class="fw-semibold">{{ detail_siswa.name }}</h2>
+              <p class="fw-light me-4 text-center lh-1">{{ detail_siswa.skils }}</p>
+
+              <div class="social-media title d-flex justify-content-center">
+                <div class="tiktok">
+                  <a href="#"><i class="bx bxl-tiktok"></i></a>
+                </div>
+                <div class="instagram">
+                  <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <!-- SwiperJS Script Link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  </body>
+</html>
