@@ -70,11 +70,6 @@
             <li class="nav-item">
               <a class="nav-link" href="#structurs">Stucturs</a>
             </li>
-            {% comment %} <li class="nav-item">
-              <button id="login" class="btn bg-white btn-sm rounded-5 pl-1 pr-3">
-                <img style="width: 30px" src="{% static 'asset/img/avatar.png' %}" alt="" class="me-2" /><span class="fw-semibold"><a href="{% url "users:login" %}" class="login text-decoration-none">Login</a></span>
-              </button>
-            </li> {% endcomment %}
             <li class="nav-item">
               {% if user.is_authenticated %}
                 <button id="login" class="btn bg-white btn-sm rounded-5 pl-1 pr-3 dropdown-toggle" data-bs-toggle="dropdown">
