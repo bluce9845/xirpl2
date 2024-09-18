@@ -1,5 +1,5 @@
 from urllib import request
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from django.core.paginator import Paginator
@@ -27,29 +27,3 @@ def detail(request, id):
     }
 
     return HttpResponse(template.render(context, request))
-
-
-
-
-#================= Testing ===================#
-def card_list(request):
-    cards = AboutStudent.objects.all()
-    paginator = Paginator(cards, 3)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
-    return render(request, 'card_list.html', {'page_obj': page_obj})
-
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        return redirect('login')
-    
-        form = FormRegister(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        return redirect('login')
-    else:
-        return redirect('register', {
-            'form': form,
-            'error': 'Error register',
-        })
