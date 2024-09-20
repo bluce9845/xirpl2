@@ -171,7 +171,7 @@ body {
 }
 
 #login {
-  padding: 0.4rem 0.6rem;
+  padding: 0.4rem 0.6rem 0.4rem 0.6rem;
   border: none;
   background-color: var(--second-color);
 }
@@ -190,6 +190,10 @@ body {
 
 .dropdown-menu .dropdown-item:hover {
   background-color: var(--nav-bg);
+}
+
+#login .login {
+  color: #3a4076;
 }
 
 /* hero section */
@@ -286,8 +290,10 @@ body {
 }
 
 .card-box .card-image .card-img {
-  width: 200px;
-  height: 200px;
+  width: 190px;
+  height: 190px;
+  background-color: #fff;
+  border: 3px solid #fff;
   border-radius: 50%;
   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.5);
   margin-left: 2.3rem;
