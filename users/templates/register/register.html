@@ -26,24 +26,13 @@
           <div class="col-md-8 col-lg-7 col-xl-6"><img src="{% static "asset/img/unlock.svg" %}" class="img-fluid" alt="Phone image" /></div>
           <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
             <form class="user form-with-validation" action="" method="post">
-              {% csrf_token %} {% if request.user.is_authenticated %}
-
-              <div data-mdb-input-init class="form-outline mb-4">
-                <label class="form-label" for="username">Username</label>
-                {{ form.username }}
+              {% csrf_token %} {% if form.errors %}
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                Your Form Has Errors {% for field in form %} {% if field.errors %} {{field.errors}} {% endif %}{% endfor %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
 
-              <!-- Password input -->
-              <div data-mdb-input-init class="form-outline mb-4">
-                <label class="form-label" for="password1">Password</label>
-                {{ form.password1 }}
-              </div>
-
-              <div data-mdb-input-init class="form-outline mb-4">
-                <label class="form-label" for="password2">Confirm password</label>
-                {{ form.password2 }}
-              </div>
-              {% endif %}
+              {% endif %} {{ form.as_p }}
 
               <!-- Submit button -->
               <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block form-button-submit" value="Login" name="submit">Sign in</button>

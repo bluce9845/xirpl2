@@ -1,34 +1,44 @@
 from django.shortcuts import render
-from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import login
 from django.shortcuts import redirect
 from django.contrib.auth import logout
-
+from django.contrib.auth import authenticate, login, logout
+from .forms import SignUpForm
+from django.contrib import messages
 
 # Create your views here.
 
 def login_user(request):
     if request.method == 'POST':
-       form = AuthenticationForm(data=request.POST)
-       if form.is_valid():
-        login(request, form.get_user())
-        return redirect('index')
+        username = request.POST['username']
+        password = request.POST['password']
+
+        # authenticated
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "You Have Been Logged In...")
+            return redirect('index')
+        else:
+            messages.success(request, "There Wa An Error Logging, Please Try Again.....")
+            return redirect('login')
     else:
-       form = AuthenticationForm()
-       
-    return render(request, 'login/login_view.html', {'form': form})
+        return render(request, 'login/login_view.html', {})
+
 
 def register_user(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
-            login(request, form.save())
-            return redirect('login')
+            form.save()
+            messages.success(request, "You Have Successfully Register...")
+            return redirect('/login/')
     else:
-        form = UserCreationForm()
-            
+        form = SignUpForm()
+        return render(request, 'register/register.html', {'form': form})
     return render(request, 'register/register.html', {'form': form})
 
+      
 def logout_user(request):
     logout(request)
     return redirect('index')

@@ -29,14 +29,12 @@
               {% csrf_token %}
               <!-- Email input -->
               <div data-mdb-input-init class="form-outline mb-4">
-                <label class="form-label" for="username">Username</label>
-                {{ form.username }}
+                <input type="text" class="form-control mt-2" id="username" name="username" placeholder="Username" required />
               </div>
 
               <!-- Password input -->
               <div data-mdb-input-init class="form-outline mb-4">
-                <label class="form-label" for="form1Example23">Password</label>
-                {{ form.password }}
+                <input type="password" class="form-control mt-2" name="password" id="password" placeholder="Password" required />
               </div>
 
               <div class="d-flex justify-content-around align-items-center mb-4">
